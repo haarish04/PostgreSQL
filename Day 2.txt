@@ -1,0 +1,39 @@
+Create Table syntax:
+
+CREATE TABLE mydb(
+
+col1 datatype1,
+col2 datatype2,
+col3 datatype3,
+.
+.
+.
+PRIMARY KEY(col)
+);
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+List all Tables, views and sequences:
+
+\d
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Drop table(s):
+
+DROP TABLE table1,table2;
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+List all tables:
+
+\dt
+
+<-- pg_catalog onsists of all system built tables and in-built datatypes -->
+
+select  * from pg_catalog.pg_tables
+where
+schemaname!='pg_catalog'
+and schemaname!='information_schema';
+
+

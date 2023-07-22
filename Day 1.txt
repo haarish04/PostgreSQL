@@ -1,0 +1,47 @@
+Create Database
+
+CREATE DATABASE mydb;
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+List all databases available:
+
+\l
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Connect to database mydb:
+
+\c mydb;
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Drop database:
+
+DROP DATABASE mydb;
+
+<--If the database is currently in use or being accessed by others, we have to revoke connection before dropping db-->
+
+REVOKE CONNECT ON DATABASE mydb FROM PUBLIC;
+
+
+
+<-- After revoke connection we need to kill all pid associated with the connection-->
+
+SELECT pg_terminate_backend(pg_stat_activity.pid)
+FROM pg_stat_activity
+WHERE pg_stat_activity.datname='mydb';
+
+
+
+<-- In oder to drop db remotely, or from the OS command line-->
+
+dropdb -h localhost -p 5432 -U postgre mydb
+Password for user postgres:****
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
