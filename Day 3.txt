@@ -1,0 +1,79 @@
+Describe Table
+pgAdmin 4
+
+SELECT COLUMN_NAME
+FROM information_schema.COLUMNS
+WHERE TABLE_NAME='db1';
+
+<-- information_schema is the schema which contains info about the table, we need to reference it while querying data about the table-->
+
+psql
+
+\d db1;
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Alter Table
+pgAdmin 4
+
+Add Column
+
+ALTER TABLE db1
+ADD COLUMN Number INTEGER;
+
+
+Rename Column
+
+ALTER TABLE db1
+RENAME COLUMN Name TO Username;
+
+
+Drop Column
+
+ALTER TABLE db1
+DROP COLUMN Username;
+
+<--PostgreSQL will automatically delete all of its constraints and indexes, including the column while deleting a column from a table, and every drop column condition is separated by a comma (,). We cannot delete those columns where the other objects depend on them and also used in other database objects like triggers, views, stored procedures, etc. So, for removing those columns and all its connected objects, we will use the CASCADE option-->
+
+ALTER TABLE db1
+DROP COLUMN Username CASCADE;
+
+
+Modify Datatype
+
+ALTER TABLE db1  
+ALTER COLUMN Username [SET DATA] TYPE VARCHAR;
+
+<--PostgreSQL offers us to change the old column values to the new one while modifying the column's data type by adding a USING condition and also providing the expression to be followed to convert the data type from one form to another-->
+
+ALTER TABLE db1  
+ALTER COLUMN Age TYPE Integer USING expression; 
+
+
+Rename Table
+
+ALTER TABLE db1
+RENAME TO db2;   
+
+
+Add Not NULL
+
+ALTER TABLE db1
+ALTER COLUMN SET Age NOT NULL;
+
+
+Remove Not NULL
+
+ALTER TABLE db1
+ALTER COLUMN
+Age DROP NOT NULL;
+
+
+Add Primary Key
+
+ALTER TABLE db1
+ADD PRIMARY KEY(Username);
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
