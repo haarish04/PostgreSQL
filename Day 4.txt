@@ -1,0 +1,3 @@
+Truncate Table
+
+TRUNCATE TABLE mydb1;
